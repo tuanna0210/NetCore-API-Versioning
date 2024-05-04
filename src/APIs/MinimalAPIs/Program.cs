@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using Asp.Versioning.Builder;
 using MinimalAPIs.Endpoints;
+using MinimalAPIs.OpenAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ builder.Services.AddApiVersioning(options =>
 })
     .AddApiExplorer(options =>
     {
-        options.GroupNameFormat = "'v'VVV"; //v1.0.0
+        options.GroupNameFormat = "'v'V"; //v1.0.0
         options.SubstituteApiVersionInUrl = true;
     });
 
@@ -21,18 +22,11 @@ builder.Services.AddApiVersioning(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.ConfigureOptions<ConfigureSwaggerGenOptions>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
 //Here you can define apiVersionSet for each resource or entire application, 
 //Below is the apiVersionSet for just weatherForecast entity
 ApiVersionSet weatherForecaseApiVersionSet = app.NewApiVersionSet()
@@ -46,10 +40,23 @@ RouteGroupBuilder weatherForecastGroup = app
     .WithApiVersionSet(weatherForecaseApiVersionSet);
 
 weatherForecastGroup.MapWeatherForecaseEndpoints();
+//Swagger must come after all the minimal APIs in order to pick up all the versioning
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        var descriptions = app.DescribeApiVersions();
+        foreach (var desc in descriptions)
+        {
+            string url = $"{desc.GroupName}/swagger.json";
+            string name = desc.GroupName.ToUpperInvariant();
+            options.SwaggerEndpoint(url, name);
+        }
+    });
+}
 
-
-
-
+app.UseHttpsRedirection();
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
