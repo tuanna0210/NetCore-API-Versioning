@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{75DF46E2-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerAPIs", "APIs\ControllerAPIs\ControllerAPIs.csproj", "{96622A6B-2C5D-4FFA-A06C-992B97C47C12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalAPIs", "APIs\MinimalAPIs\MinimalAPIs.csproj", "{EA44DD58-2BC2-45C6-9886-312F07548D6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{96622A6B-2C5D-4FFA-A06C-992B97C47C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96622A6B-2C5D-4FFA-A06C-992B97C47C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96622A6B-2C5D-4FFA-A06C-992B97C47C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA44DD58-2BC2-45C6-9886-312F07548D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA44DD58-2BC2-45C6-9886-312F07548D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA44DD58-2BC2-45C6-9886-312F07548D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA44DD58-2BC2-45C6-9886-312F07548D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{96622A6B-2C5D-4FFA-A06C-992B97C47C12} = {75DF46E2-62CA-432E-8794-6A1E94431757}
+		{EA44DD58-2BC2-45C6-9886-312F07548D6A} = {75DF46E2-62CA-432E-8794-6A1E94431757}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA32DBE1-8A7F-4A71-843E-AF42AC7E7970}
